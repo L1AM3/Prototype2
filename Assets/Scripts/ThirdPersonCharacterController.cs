@@ -23,6 +23,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     private float currentVerticalVelocity = 0;
 
     private bool jumpInputPressed = false;
+    private bool attackInputPressed = false;
 
     private bool isJumping = false;
 
@@ -58,6 +59,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
         characterController.Move(currentVelocity * Time.deltaTime);
 
         RotateCharacter();
+        OverlapAttackCheck();
     }
 
     public void OnMove(InputValue value)
@@ -91,7 +93,10 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
-       OverlapAttackCheck();
+       attackInputPressed = value.Get<float>() > 0;
+        if (attackInputPressed)
+            OverlapAttackCheck();
+
     }
 
     private void OverlapAttackCheck()
