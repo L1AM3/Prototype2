@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonCharacterController : MonoBehaviour
 {
+    public Camera cam;
+
     public float moveSpeed = 5;
     public float moveAcceleration = 10;
 
@@ -34,7 +36,12 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     private void Update()
     {
-        currentHorizontalVelocity = Vector2.Lerp(currentHorizontalVelocity, moveInput * moveSpeed, Time.deltaTime * moveAcceleration);
+        Vector3 cameraSpaceMovement = new Vector3(moveInput.x, 0, moveInput.y);
+        cameraSpaceMovement = cam.transform.TransformDirection(cameraSpaceMovement);
+
+        Vector2 cameraHorizontalMovement = new Vector2(cameraSpaceMovement.x, cameraSpaceMovement.z);
+
+        currentHorizontalVelocity = Vector2.Lerp(currentHorizontalVelocity, cameraHorizontalMovement * moveSpeed, Time.deltaTime * moveAcceleration);
 
         if(isJumping == false)
         {
@@ -59,7 +66,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
         characterController.Move(currentVelocity * Time.deltaTime);
 
         RotateCharacter();
-        OverlapAttackCheck();
+        //OverlapAttackCheck();
     }
 
     public void OnMove(InputValue value)
@@ -94,6 +101,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     public void OnAttack(InputValue value)
     {
        attackInputPressed = value.Get<float>() > 0;
+        Debug.Log(value.ToString());
         if (attackInputPressed)
             OverlapAttackCheck();
 
