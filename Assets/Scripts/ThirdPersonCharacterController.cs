@@ -28,6 +28,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
     private bool attackInputPressed = false;
 
     private bool isJumping = false;
+    public bool canControl = true;
 
     private void Awake()
     {
@@ -36,37 +37,39 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 cameraSpaceMovement = new Vector3(moveInput.x, 0, moveInput.y);
-        cameraSpaceMovement = cam.transform.TransformDirection(cameraSpaceMovement);
-
-        Vector2 cameraHorizontalMovement = new Vector2(cameraSpaceMovement.x, cameraSpaceMovement.z);
-
-        currentHorizontalVelocity = Vector2.Lerp(currentHorizontalVelocity, cameraHorizontalMovement * moveSpeed, Time.deltaTime * moveAcceleration);
-
-        if(isJumping == false)
+        if (canControl)
         {
-            currentVerticalVelocity += Physics.gravity.y * Time.deltaTime;
+            Vector3 cameraSpaceMovement = new Vector3(moveInput.x, 0, moveInput.y);
+            cameraSpaceMovement = cam.transform.TransformDirection(cameraSpaceMovement);
 
-            if(characterController.isGrounded && currentVerticalVelocity < 0 )
+            Vector2 cameraHorizontalMovement = new Vector2(cameraSpaceMovement.x, cameraSpaceMovement.z);
+
+            currentHorizontalVelocity = Vector2.Lerp(currentHorizontalVelocity, cameraHorizontalMovement * moveSpeed, Time.deltaTime * moveAcceleration);
+
+            if (isJumping == false)
             {
-                currentVerticalVelocity = Physics.gravity.y * Time.deltaTime;
-            }
-        }
-        else
-        {
-            jumpTimer += Time.deltaTime;
+                currentVerticalVelocity += Physics.gravity.y * Time.deltaTime;
 
-            if ( jumpTimer >= jumpMaxTime)
+                if (characterController.isGrounded && currentVerticalVelocity < 0)
+                {
+                    currentVerticalVelocity = Physics.gravity.y * Time.deltaTime;
+                }
+            }
+            else
             {
-                isJumping = false;
+                jumpTimer += Time.deltaTime;
+
+                if (jumpTimer >= jumpMaxTime)
+                {
+                    isJumping = false;
+                }
             }
+
+            Vector3 currentVelocity = new Vector3(currentHorizontalVelocity.x, currentVerticalVelocity, currentHorizontalVelocity.y);
+            characterController.Move(currentVelocity * Time.deltaTime);
+
+            RotateCharacter();
         }
-
-        Vector3 currentVelocity = new Vector3(currentHorizontalVelocity.x, currentVerticalVelocity, currentHorizontalVelocity.y);
-        characterController.Move(currentVelocity * Time.deltaTime);
-
-        RotateCharacter();
-        //OverlapAttackCheck();
     }
 
     public void OnMove(InputValue value)
