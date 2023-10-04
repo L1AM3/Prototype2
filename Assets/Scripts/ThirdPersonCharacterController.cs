@@ -8,6 +8,9 @@ public class ThirdPersonCharacterController : MonoBehaviour
 {
     public Camera cam;
 
+    public ForcePush push;
+    public ForcePushTwo pushtwo;
+
     public float moveSpeed = 5;
     public float moveAcceleration = 10;
 
@@ -106,7 +109,11 @@ public class ThirdPersonCharacterController : MonoBehaviour
        attackInputPressed = value.Get<float>() > 0;
         Debug.Log(value.ToString());
         if (attackInputPressed)
+        {
             OverlapAttackCheck();
+            push.ForcePushes();
+            pushtwo.ForcePushes();
+        }
 
     }
 
@@ -125,6 +132,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
             {
                 Vector3 direction = item.transform.position - transform.position;
                 item.SendMessage("OnPlayerAttack", direction, SendMessageOptions.DontRequireReceiver);
+
             }
         }
     }
