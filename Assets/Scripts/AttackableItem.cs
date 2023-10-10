@@ -14,6 +14,6 @@ public class AttackableItem : MonoBehaviour
 
     public void OnPlayerAttack(Vector3 hitDirection)
     {
-        rb.AddForce(hitDirection.normalized * 10, ForceMode.Impulse);
+        rb.AddForce(hitDirection.normalized * 30, ForceMode.Impulse);
     }
 }
