@@ -7005,8 +7005,8 @@ GameObject:
   - component: {fileID: 4701335117167615240}
   - component: {fileID: 2652153781302269482}
   - component: {fileID: 5389888717548851063}
-  - component: {fileID: 5706746536506378799}
   - component: {fileID: 4006734927672737614}
+  - component: {fileID: 388449402538584529}
   m_Layer: 0
   m_Name: Class Ice Monster
   m_TagString: Enemy
@@ -7071,8 +7071,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Destination: {fileID: 0}
---- !u!136 &5706746536506378799
-CapsuleCollider:
+--- !u!114 &4006734927672737614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7157195844365450368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c20188e7250f644aacc5e9dd959428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyHealthCount: 3
+--- !u!135 &388449402538584529
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7089,23 +7102,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.73751736
-  m_Height: 3.726406
-  m_Direction: 1
-  m_Center: {x: 0.0012369156, y: 1.7313118, z: 0}
---- !u!114 &4006734927672737614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7157195844365450368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16c20188e7250f644aacc5e9dd959428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 3
+  m_Radius: 0.63542604
+  m_Center: {x: 0.021261692, y: 1.9106255, z: 2.633932}
 --- !u!1 &7185281024662193337
 GameObject:
   m_ObjectHideFlags: 0
