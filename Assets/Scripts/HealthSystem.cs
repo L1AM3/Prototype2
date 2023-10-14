@@ -9,9 +9,9 @@ public class HealthSystem : MonoBehaviour
     public int Health = 5;
 
     // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (other.tag == "Enemy")
         {
             Health--;
             Debug.Log(Health);
