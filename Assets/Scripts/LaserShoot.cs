@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class LaserShoot : MonoBehaviour
 {
-    public GameObject laser;
+    public LaserAnimation shoot;
+    public bool FireLaser;
 
     // Start is called before the first frame update
     void Start()
     {
-        laser.SetActive(false);
+        //GetComponent<CapsuleCollider>().enabled = false;
     }
 
     // Update is called once per frame
@@ -22,11 +23,15 @@ public class LaserShoot : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            laser.SetActive(true);
+            //GetComponent<CapsuleCollider>().enabled = true;
+            FireLaser = true;
+            shoot.LaserShootAnimation(FireLaser);
         }
         else if (!Input.GetKey(KeyCode.Mouse1))
         {
-            laser.SetActive(false);
+            //GetComponent<CapsuleCollider>().enabled = false;
+            FireLaser = false;
+            shoot.LaserShootAnimation(FireLaser);
         }
     }
 }
