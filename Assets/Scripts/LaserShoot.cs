@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class LaserShoot : MonoBehaviour
 {
+    public LaserInteract Interact;
     public LaserAnimation shoot;
     public bool FireLaser;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //GetComponent<CapsuleCollider>().enabled = false;
-    }
 
     // Update is called once per frame
     void Update()
@@ -21,15 +16,16 @@ public class LaserShoot : MonoBehaviour
 
     public void ShootLaser()
     {
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            //GetComponent<CapsuleCollider>().enabled = true;
+            Interact.IsActive = true;
             FireLaser = true;
             shoot.LaserShootAnimation(FireLaser);
         }
-        else if (!Input.GetKey(KeyCode.Mouse1))
+        
+        if (Input.GetKeyUp(KeyCode.Mouse1))
         {
-            //GetComponent<CapsuleCollider>().enabled = false;
+            Interact.IsActive = false;
             FireLaser = false;
             shoot.LaserShootAnimation(FireLaser);
         }

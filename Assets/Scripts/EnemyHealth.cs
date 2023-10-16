@@ -5,27 +5,27 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int EnemyHealthCount = 3;
+    public PenguinBotDeathAnimation BotDead;
 
-    private void OnTriggerEnter(Collider other)
+    public void EnemyHealthDecrease(int damage = 1)
     {
+        EnemyHealthCount -= damage;
         Debug.Log(EnemyHealthCount);
-        if (other.tag == "Laser")
-        {
-            EnemyHealthCount--;
-            Debug.Log(EnemyHealthCount);
-            EnemyDeath();
-        }
-
+        EnemyDeath();
     }
-
-
 
     public void EnemyDeath()
     {
-        if (EnemyHealthCount > 0)
+        if (EnemyHealthCount <= 0)
         {
-            gameObject.SetActive(false);
+            BotDead.PenguinBotDeathAnimatior(true);
+            Invoke("Delay", 1);
         }
     }
     
+    public void Delay()
+    {
+        gameObject.SetActive(false);
+    }
+
 }
