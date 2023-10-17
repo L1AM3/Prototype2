@@ -6,11 +6,14 @@ public class EnemyHealth : MonoBehaviour
 {
     public int EnemyHealthCount = 3;
     public PenguinBotDeathAnimation BotDead;
+    public PenguinBotDamage BotDamage;
 
     public void EnemyHealthDecrease(int damage = 1)
     {
+        BotDamage.PenguinBotDamageEffect();
         EnemyHealthCount -= damage;
-        Debug.Log(EnemyHealthCount);
+        //Invoke("RevertDelay", 2);
+        //Debug.Log(EnemyHealthCount);
         EnemyDeath();
     }
 
@@ -26,6 +29,11 @@ public class EnemyHealth : MonoBehaviour
     public void Delay()
     {
         gameObject.SetActive(false);
+    }
+
+    public void RevertDelay()
+    {
+        BotDamage.PenguinBotDamageEffectRevert();
     }
 
 }

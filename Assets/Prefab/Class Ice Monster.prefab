@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 980356114135758709}
   - component: {fileID: 4431724542293507797}
   - component: {fileID: 8605658404628380478}
+  - component: {fileID: 1021850718353089928}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -505,6 +506,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1021850718353089928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003879251353822283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bbfa15a29840040a525c30bb92bae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1804068875098187459
 GameObject:
   m_ObjectHideFlags: 0
@@ -7152,6 +7165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHealthCount: 3
   BotDead: {fileID: 1289924891449616916}
+  BotDamage: {fileID: 1021850718353089928}
 --- !u!135 &388449402538584529
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10503,6 +10517,7 @@ GameObject:
   - component: {fileID: 2312821022679644631}
   - component: {fileID: 7342380316716873290}
   - component: {fileID: 8149137875072793804}
+  - component: {fileID: 2212515670532928219}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Untagged
@@ -10596,3 +10611,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2212515670532928219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8996512224559495889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7bbfa15a29840040a525c30bb92bae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
