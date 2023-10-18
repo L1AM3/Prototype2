@@ -16,8 +16,6 @@ public class MoveToDestination : MonoBehaviour
 
     private void Update()
     {
-        
-
         iceMonster.destination = Destination.position;
     }
 }

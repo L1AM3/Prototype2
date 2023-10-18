@@ -25,7 +25,7 @@ public class HealthSystem : MonoBehaviour
             Health--;
             healthBarAnimation.PenguinHealthBarAnimation(true);
             healthBar.SetHealth(Health);
-            Invoke("Delay", 2);
+            Invoke("Delay", 1);
             //Debug.Log(Health);
         }
 
