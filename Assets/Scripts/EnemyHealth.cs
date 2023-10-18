@@ -7,20 +7,23 @@ public class EnemyHealth : MonoBehaviour
     public int EnemyHealthCount = 3;
     public PenguinBotDeathAnimation BotDead;
     public PenguinBotDamage BotDamage;
+    public EnemyKillCounter EnemyKill;
 
     public void EnemyHealthDecrease(int damage = 1)
     {
-        BotDamage.PenguinBotDamageEffect();
         EnemyHealthCount -= damage;
-        //Invoke("RevertDelay", 2);
+        BotDamage.PenguinBotHurtAnimatior(true);
+        Invoke("RevertDelay", 1);
         //Debug.Log(EnemyHealthCount);
         EnemyDeath();
     }
 
     public void EnemyDeath()
     {
-        if (EnemyHealthCount <= 0)
+        if (EnemyHealthCount == 0)
         {
+            Debug.Log("EnemyDie!");
+            EnemyKill.KillCount();
             BotDead.PenguinBotDeathAnimatior(true);
             Invoke("Delay", 1);
         }
@@ -33,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void RevertDelay()
     {
-        BotDamage.PenguinBotDamageEffectRevert();
+        BotDamage.PenguinBotHurtAnimatior(false);
     }
 
 }
