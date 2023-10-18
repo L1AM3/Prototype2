@@ -109,7 +109,6 @@ public class ThirdPersonCharacterController : MonoBehaviour
     public void OnAttack(InputValue value)
     {
        attackInputPressed = value.Get<float>() > 0;
-        Debug.Log(value.ToString());
         if (attackInputPressed)
         {
             OverlapAttackCheck();
