@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class ForcePush : MonoBehaviour
 {
+    //bool to see if the player is force pushing
     public bool ForcePushing = false;
-    public ForePushAnimation force;
+
+    //public reference to force push animation
+    public ForePushAnimation Force;
 
     public void ForcePushes()
     {
+        //If the force push function is called the animation bool will be set to true and will play
         ForcePushing = true;
-        force.ForcePushOne(ForcePushing);
+        Force.ForcePushOne(ForcePushing);
 
+        //Reverts back to default animation when done
         Invoke("Delay", 1);
     }
 
-    private void Delay()
+    public void Delay()
     {
+        //If the force push function is done the animation bool will be set to false and will stop playing
         ForcePushing = false;
-        force.ForcePushOne(ForcePushing);
+        Force.ForcePushOne(ForcePushing);
     }
 }

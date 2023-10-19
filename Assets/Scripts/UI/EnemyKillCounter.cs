@@ -5,30 +5,41 @@ using TMPro;
 
 public class EnemyKillCounter : MonoBehaviour
 {
-    private int KillCounter = 0;
+    //int for enemies killed in a playthrough
+    private int killCounter = 0;
+
+    //reference to text object
     public TMP_Text KillingCount;
+
+    //public reference to script
     public KillCounterAnimation KillCounterAnim;
 
     public void Awake()
     {
-        KillCounter = 0;
+        //Sets kill counter to zero to make sure game starts with it at zero
+        killCounter = 0;
     }
 
+    //Called when enemy is killed
     public void KillCount ()
     {
-        KillCounter++;
+        //Adds to kill counter
+        killCounter++;
+
+        //Animates kill counter to be visible and then back to invisible
         KillCounterAnim.KillerCounterAnimation(true);
         Invoke("Delay", 2);
-        Debug.Log(KillCounter);
     }
 
     public void Update()
     {
-        KillingCount.text = KillCounter.ToString();
+        //Updates kill counter text with the enemies killed
+        KillingCount.text = killCounter.ToString();
     }
 
     public void Delay()
     {
+        //Sets kill counter back to invisible
         KillCounterAnim.KillerCounterAnimation(false);
     }
 }

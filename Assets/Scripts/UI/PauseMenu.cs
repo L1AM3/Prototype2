@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject PausingMenu;
+    //game object reference for pause menu
+    [SerializeField] private GameObject pausingMenu;
+
     // Start is called before the first frame update
     void Start()
     {
-        PausingMenu.SetActive(false);
+        //default the pause menu to off
+        pausingMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //When pressing escape the pause menu will activate
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PausingMenu.SetActive(true);
+            //Pulls up pause menu
+            pausingMenu.SetActive(true);
+
+            //Pauses time in the game
             Time.timeScale = 0;
+
+            //Sets cursor to visible and unlocks them
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -26,7 +35,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Unpause()
     {
-        PausingMenu.SetActive(false);
+        pausingMenu.SetActive(false);
         Time.timeScale = 1.0f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

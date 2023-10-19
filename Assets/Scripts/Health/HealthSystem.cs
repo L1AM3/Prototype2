@@ -7,36 +7,47 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    public HealthBar healthBar;
-    public HealthBarAnimation healthBarAnimation;
+    //public references to other scripts
+    public HealthBar HealthBar;
+    public HealthBarAnimation HealthBarAnimation;
 
+    //int for player health
     public int Health = 15;
 
     private void Start()
     {
-        healthBar.SetMaxHealth(Health);
+        //Sets healthbar max to max health
+        HealthBar.SetMaxHealth(Health);
     }
 
-    // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
+        //If player gets hit by enemy sawblade then the player will take damage 
         if (other.tag == "Enemy")
         {
+            //Takes one health away from player health
             Health--;
-            healthBarAnimation.PenguinHealthBarAnimation(true);
-            healthBar.SetHealth(Health);
+
+            //Animates health bar to be visible
+            HealthBarAnimation.PenguinHealthBarAnimation(true);
+
+            //Sets health bar to current health
+            HealthBar.SetHealth(Health);
+
+            //Reverts health bar back to invisible
             Invoke("Delay", 1);
-            //Debug.Log(Health);
         }
 
         if (Health <= 0)
         {
+            //If health is zero reload the scene
             SceneManager.LoadScene("SampleScene");
         }
     }
 
     public void Delay()
     {
-        healthBarAnimation.PenguinHealthBarAnimation(false);
+        //Reverts health bar back to invisible
+        HealthBarAnimation.PenguinHealthBarAnimation(false);
     }
 }
