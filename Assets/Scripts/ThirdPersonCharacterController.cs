@@ -8,6 +8,10 @@ public class ThirdPersonCharacterController : MonoBehaviour
 {
     public Camera cam;
 
+    public LaserInteract Interact;
+    public LaserAnimation shoot;
+    public bool FireLaser;
+
     public ForcePush push;
     public ForcePushTwo pushtwo;
 
@@ -29,6 +33,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
 
     private bool jumpInputPressed = false;
     private bool attackInputPressed = false;
+    private bool laserInputHeld = false;
 
     private bool isJumping = false;
     public bool canControl = true;
@@ -116,6 +121,23 @@ public class ThirdPersonCharacterController : MonoBehaviour
             pushtwo.ForcePushes();
         }
 
+    }
+
+    public void OnLaser(InputValue value)
+    {
+        laserInputHeld = value.isPressed;
+        if (laserInputHeld)
+        {
+            Interact.IsActive = true;
+            FireLaser = true;
+            shoot.LaserShootAnimation(FireLaser);
+        }
+        else if (!laserInputHeld)
+        {
+            Interact.IsActive = false;
+            FireLaser = false;
+            shoot.LaserShootAnimation(FireLaser);
+        }
     }
 
     private void OverlapAttackCheck()
