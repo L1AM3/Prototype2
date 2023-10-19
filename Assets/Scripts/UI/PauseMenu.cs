@@ -33,10 +33,16 @@ public class PauseMenu : MonoBehaviour
       
     }
 
+    //Called to unpause the pause menu
     public void Unpause()
     {
+        //Gets rid of the pause menu from the player's display
         pausingMenu.SetActive(false);
+
+        //Sets time scale back to normal
         Time.timeScale = 1.0f;
+
+        //Locks the cursor and makes it invisible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
